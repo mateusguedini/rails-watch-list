@@ -1,0 +1,31 @@
+<div class="container">
+  <h1>List</h1>
+  <p>
+    <strong>Name:</strong>
+    <%= @list.name %>
+  </p>
+
+  <h3>Movies</h3>
+  <ul>
+    <% @list.movies.each do |movie| %>
+      <li>
+        <strong>title:</strong>
+        <%= movie.title %>
+        | <strong>overview:</strong>
+        <%= movie.overview %>
+        | <strong>rating:</strong>
+        <%= movie.rating %>
+        | <strong>url:</strong>
+        <%= movie.poster_url %>
+        <li>
+          <%= movie.bookmarks.last.comment %>
+        </li>
+      </li>
+    <% end %>
+  </ul>
+
+
+  <%= link_to 'Make a Bookmark', new_list_bookmark_path(@list) %>
+  <%= link_to 'Delete a Bookmark', bookmark_path(@list), method: :delete, data: { confirm: "Are you sure?" } %>
+  <%= link_to 'Back', lists_path %>
+</div>
